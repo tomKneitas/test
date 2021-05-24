@@ -6,6 +6,8 @@ on:
       version:
         description: 'The version you want to release.'
         required: true
+      branch:
+        description: 'Branch name'
 
 jobs:
   draft-new-release:
