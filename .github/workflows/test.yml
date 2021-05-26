@@ -3,17 +3,23 @@ name: Super-Linter
 on: push
 
 jobs:
+  setup-docker:
+    runs-on: [self-hosted]
+    name: docker
+    steps:
+        - uses: docker-practice/actions-setup-docker@master
+    
   super-lint:
     name: Lint code base
+    needs: setup-docker
     runs-on: [self-hosted]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         
-      - uses: docker-practice/actions-setup-docker@master
-
       - name: Run Super-Linter
         uses: github/super-linter@v3
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
