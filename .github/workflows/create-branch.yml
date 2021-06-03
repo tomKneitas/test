@@ -1,6 +1,13 @@
 name: create-branch
 
-on: [workflow_dispatch]
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version you want to release.'
+        required: true
+      branch:
+        description: 'Branch name'
 
 jobs: 
   build:
